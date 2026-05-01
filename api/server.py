@@ -336,6 +336,21 @@ def rag_search(
     return {"data": results, "meta": _meta(query=q, stage=stage)}
 
 
+# ─── /api/debug ───────────────────────────────────────────────────────────────
+
+@app.get("/api/debug")
+def debug_info(db: Session = Depends(get_db)):
+    import os
+    from db.database import _DB_PATH
+    return {
+        "db_path":    _DB_PATH,
+        "db_exists":  os.path.isfile(_DB_PATH),
+        "db_size":    os.path.getsize(_DB_PATH) if os.path.isfile(_DB_PATH) else 0,
+        "cwd":        os.getcwd(),
+        "runs_count": db.query(Run).count(),
+    }
+
+
 # ─── /api/cache/invalidate ────────────────────────────────────────────────────
 
 @app.post("/api/cache/invalidate")
