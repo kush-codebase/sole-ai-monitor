@@ -1,0 +1,25 @@
+{
+  "permissions": {
+    "allow": [
+      "Read(//tmp/**)",
+      "mcp__Claude_in_Chrome__tabs_context_mcp",
+      "Bash(curl -s http://localhost:8000/api/stages)",
+      "Bash(curl -s http://localhost:8000/api/metrics)",
+      "Bash(pkill -f \"vite\")",
+      "Bash(npm run *)",
+      "Bash(pip install *)",
+      "Bash(python db/migrate.py)",
+      "Bash(pkill -f \"uvicorn\")",
+      "Bash(python -m uvicorn api.server:app --port 8000)",
+      "Bash(curl -s http://localhost:8000/api/runs)",
+      "Bash(python -m json.tool)",
+      "PowerShell(netstat -ano | findstr \":8000\" | ForEach-Object { $parts = $_ -split '\\\\s+'; $procId = $parts[-1]; if \\($procId -match '^\\\\d+$'\\) { Stop-Process -Id \\([int]$procId\\) -Force -ErrorAction SilentlyContinue } }; Start-Sleep -Seconds 2; \"done\")",
+      "Bash(curl -s http://localhost:8000/api/stage/Trigger)",
+      "Bash(curl -s \"http://localhost:8000/api/brands/Nike\")",
+      "Bash(curl -s \"http://localhost:8000/api/metrics?stage=All\")",
+      "Bash(netstat -ano)",
+      "Bash(awk '{print $5}')",
+      "Bash(xargs -I {} powershell.exe -Command \"Stop-Process -Id {} -Force\")"
+    ]
+  }
+}
